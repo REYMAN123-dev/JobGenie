@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - JobGenie</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/landing.css">
+    <style>
+        .pricing-section {
+            padding: 6rem 2rem;
+            background: #0f0f15;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+        .pricing-card {
+            background: #1a1a24;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        .pricing-card.featured {
+            border: 3px solid #8b5cf6;
+            transform: scale(1.05);
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .pricing-header {
+            margin-bottom: 2rem;
+        }
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-period {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: #b0b0b0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .pricing-features li:before {
+            content: "✓";
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .pricing-cta {
+            width: 100%;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <a href="/" style="text-decoration: none; color: inherit;"><span class="logo-text">JobGenie</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/pricing" class="active">Pricing</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/dashboard" class="nav-cta">Dashboard</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Hero -->
+    <section class="hero-section" style="min-height: 50vh; padding-top: 6rem;">
+        <div class="hero-content">
+            <h1 class="hero-title">Simple, Transparent Pricing</h1>
+            <p class="hero-description">
+                Choose the plan that works best for you. All plans include a free trial.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-name">Free</div>
+                        <div class="pricing-price">$0</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>1 Interview per month</li>
+                        <li>Basic feedback</li>
+                        <li>Resume upload</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="/dashboard" class="btn btn-secondary pricing-cta">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <div class="pricing-name">Pro</div>
+                        <div class="pricing-price">$29</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Unlimited interviews</li>
+                        <li>Detailed AI feedback</li>
+                        <li>Job matching</li>
+                        <li>Resume builder</li>
+                        <li>Analytics dashboard</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="/dashboard" class="btn btn-primary pricing-cta">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-name">Enterprise</div>
+                        <div class="pricing-price">$99</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Everything in Pro</li>
+                        <li>Team collaboration</li>
+                        <li>Custom integrations</li>
+                        <li>Dedicated support</li>
+                        <li>Advanced analytics</li>
+                        <li>API access</li>
+                    </ul>
+                    <a href="/contact" class="btn btn-secondary pricing-cta">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">JobGenie</span>
+                    </div>
+                    <p>Empowering professionals to succeed in their career journey through AI-powered interview preparation.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/features">Features</a></li>
+                        <li><a href="/pricing">Pricing</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 JobGenie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/landing.js"></script>
+</body>
+</html>
+

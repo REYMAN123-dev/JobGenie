@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JobGenie</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/landing.css">
+    <style>
+        body {
+            background: #0a0a0f;
+        }
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            padding-top: 6rem;
+            background: #0a0a0f;
+            min-height: calc(100vh - 80px);
+        }
+        .dashboard-header {
+            margin-bottom: 3rem;
+        }
+        .dashboard-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .dashboard-subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .dashboard-card {
+            background: #1a1a24;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            transition: all 0.3s ease;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        .dashboard-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+        }
+        .stat-card:hover {
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.4);
+        }
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white !important;
+        }
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.95;
+            font-weight: 500;
+            color: white !important;
+        }
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .action-btn {
+            padding: 1rem 1.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #a78bfa;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .action-btn:hover {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+        }
+        .interview-history {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .interview-history::-webkit-scrollbar {
+            width: 6px;
+        }
+        .interview-history::-webkit-scrollbar-track {
+            background: #0f0f15;
+            border-radius: 10px;
+        }
+        .interview-history::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 10px;
+        }
+        .interview-history::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+        .history-item {
+            padding: 1.25rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .history-item:hover {
+            background: rgba(139, 92, 246, 0.05);
+        }
+        .history-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .history-date {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .history-score {
+            font-weight: 700;
+            color: #8b5cf6;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⚡</span>
+                <a href="/" style="text-decoration: none; color: inherit;"><span class="logo-text">JobGenie</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/dashboard" class="nav-cta active">Dashboard</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Dashboard</h1>
+            <p class="dashboard-subtitle">Welcome back! Here's your interview preparation overview.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card stat-card">
+                <div class="stat-value" id="totalInterviews">0</div>
+                <div class="stat-label">Total Interviews</div>
+            </div>
+            <div class="dashboard-card stat-card" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">
+                <div class="stat-value" id="avgScore">0</div>
+                <div class="stat-label">Average Score</div>
+            </div>
+            <div class="dashboard-card stat-card" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
+                <div class="stat-value" id="improvement">+0%</div>
+                <div class="stat-label">Improvement</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions">
+                    <a href="/candidate-details" class="action-btn">Start Interview</a>
+                    <a href="#resume" class="action-btn">Build Resume</a>
+                    <a href="#jobs" class="action-btn">Find Jobs</a>
+                    <a href="#analytics" class="action-btn">View Analytics</a>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <h3>Recent Interviews</h3>
+                <div class="interview-history" id="interviewHistory">
+                    <p style="color: #b0b0b0; text-align: center; padding: 2rem; font-size: 0.95rem;">No interviews yet. Start your first interview!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">JobGenie</span>
+                    </div>
+                    <p>Empowering professionals to succeed in their career journey through AI-powered interview preparation.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="/features">Features</a></li>
+                        <li><a href="/pricing">Pricing</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 JobGenie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+    <script src="/static/landing.js"></script>
+    <script>
+        // Initialize session ID if not already set
+        if (typeof sessionId === 'undefined') {
+            var sessionId = 'session_' + Date.now();
+        }
+
+        // Load dashboard data
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('/api/analytics?session_id=' + sessionId);
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('totalInterviews').textContent = data.analytics.total_interviews || 0;
+                    document.getElementById('avgScore').textContent = data.analytics.average_score || 0;
+                    document.getElementById('improvement').textContent = data.analytics.improvement_trend === 'up' ? '+15%' : '0%';
+                }
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+
+            try {
+                const historyResponse = await fetch('/api/interview/history?session_id=' + sessionId);
+                const historyData = await historyResponse.json();
+                if (historyData.success && historyData.history.length > 0) {
+                    const historyContainer = document.getElementById('interviewHistory');
+                    historyContainer.innerHTML = historyData.history.map(item => `
+                        <div class="history-item">
+                            <div>
+                                <div class="history-date">${new Date(item.date).toLocaleDateString()}</div>
+                            </div>
+                            <div class="history-score">${item.score}/100</div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading interview history:', error);
+            }
+        }
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+        });
+    </script>
+</body>
+</html>
+
